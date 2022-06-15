@@ -1,4 +1,3 @@
-import './App.css';
 import Palette from './Pallete';
 import seedColors from './seedColors';
 
