@@ -1,4 +1,4 @@
-import Palette from './Pallete';
+import Palette from './Palette';
 import seedColors from './seedColors';
 
 function App() {

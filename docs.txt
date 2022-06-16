@@ -1,0 +1,7 @@
+This application allows user to get colour palette, copy set colors on box click and then paste them where needed.
+
+src/
+App - Main Application file, that calls for Palette class, passing seedColors variables imported from seedColors.js
+Palette - Component that containes all the color boxes. It takes colors argument. Colors should be array of colors that will be shown inside pallete. Each color should contain color and name.
+ColorBox - Component, that takes 2 props, name and background and returns a box with set width and height. Background is returned upon element click and also is used to style the color of the div. Name is shown inside span.
+seedColors - seed file that contains all colours that will be used inside app
