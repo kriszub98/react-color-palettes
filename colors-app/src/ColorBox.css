@@ -36,10 +36,11 @@
 }
 
 .box-content {
+	box-sizing: border-box;
 	position: absolute;
-	width: 100%;
 	left: 0px;
 	bottom: 0px;
+	width: 100%;
 	padding: 10px;
 	color: black;
 	letter-spacing: 1px;
