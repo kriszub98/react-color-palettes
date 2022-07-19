@@ -27,10 +27,10 @@ const Palette = () => {
 		return setLevel(level);
 	};
 
-	const { colors, paletteName, emoji } = generatePalette(findPalette(id));
+	const { colors, paletteName, emoji, id: paletteId } = generatePalette(findPalette(id));
 
 	const colorBoxes = colors[level].map((color) => (
-		<ColorBox key={color.id} background={color[format]} name={color.name} />
+		<ColorBox key={color.id} background={color[format]} name={color.name} id={color.id} paletteId={paletteId} />
 	));
 
 	return (
