@@ -30,15 +30,22 @@ const Palette = () => {
 	const { colors, paletteName, emoji, id: paletteId } = generatePalette(findPalette(id));
 
 	const colorBoxes = colors[level].map((color) => (
-		<ColorBox key={color.id} background={color[format]} name={color.name} id={color.id} paletteId={paletteId} />
+		<ColorBox
+			key={color.id}
+			background={color[format]}
+			name={color.name}
+			id={color.id}
+			paletteId={paletteId}
+			showLink
+		/>
 	));
 
 	return (
 		<div className="Palette">
 			<Navbar level={level} changeLevel={changeLevel} handleFormatChange={changeFormat} />
 			<div className="Palette-colors">{colorBoxes}</div>
-			<footer className="Palette-footer">
-				{paletteName}
+			<footer className="Palette-footr">
+				{paletteName}e
 				<span className="emoji">{emoji}</span>
 			</footer>
 		</div>
