@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
+import Navbar from './Navbar';
 import './Palette.css';
+import PaletteFooter from './PaletteFooter';
 
 const SingleColorPalette = () => {
 	const { paletteId, colorId } = useParams();
+	const [ format, setFormat ] = useState('hex');
 
 	const gatherShades = (colors, colorToFilterBy) => {
 		let shades = [];
@@ -25,16 +28,21 @@ const SingleColorPalette = () => {
 		});
 	};
 
+	const changeFormat = (newFormat) => {
+		return setFormat(newFormat);
+	};
+
 	const { colors, paletteName, emoji, id } = generatePalette(findPalette(paletteId));
 	const shades = gatherShades(colors, colorId);
 	const colorBoxes = shades.map((color) => {
-		return <ColorBox key={color.name} name={color.name} background={color.hex} />;
+		return <ColorBox key={color.name} name={color.name} background={color[format]} />;
 	});
 
 	return (
 		<div className="Palette">
-			<h1>SingleColorPalette</h1>
+			<Navbar handleFormatChange={changeFormat} />
 			<div className="Palette-colors">{colorBoxes}</div>
+			<PaletteFooter paletteName={paletteName} emoji={emoji} />
 		</div>
 	);
 };
