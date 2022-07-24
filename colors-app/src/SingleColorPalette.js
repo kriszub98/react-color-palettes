@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-import './Palette.css';
 import PaletteFooter from './PaletteFooter';
+import './Palette.css';
 
 const SingleColorPalette = () => {
 	const { paletteId, colorId } = useParams();
@@ -39,9 +39,16 @@ const SingleColorPalette = () => {
 	});
 
 	return (
-		<div className="Palette">
+		<div className="SingleColorPalette Palette">
 			<Navbar handleFormatChange={changeFormat} />
-			<div className="Palette-colors">{colorBoxes}</div>
+			<div className="Palette-colors">
+				{colorBoxes}
+				<div className="go-back ColorBox">
+					<Link to={`/palette/${id}`} className="back-button">
+						Go Back
+					</Link>
+				</div>
+			</div>
 			<PaletteFooter paletteName={paletteName} emoji={emoji} />
 		</div>
 	);
