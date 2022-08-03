@@ -13,7 +13,7 @@ const Box = styled('div')(({ color }) => ({
 }));
 
 const DraggableColorBox = (props) => {
-	return <Box color={props.color}>{props.color}</Box>;
+	return <Box color={props.color}>{props.name}</Box>;
 };
 
 export default DraggableColorBox;
