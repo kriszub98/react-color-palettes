@@ -106,6 +106,10 @@ export default function NewPaletteForm({ savePalette, palettes }) {
 		setColorName('');
 	};
 
+	const removeColor = (colorName) => {
+		return setColors((colors) => colors.filter((color) => color.name !== colorName));
+	};
+
 	const handleSavePalette = () => {
 		const newPalette = {
 			paletteName: paletteName,
@@ -195,7 +199,12 @@ export default function NewPaletteForm({ savePalette, palettes }) {
 			<Main open={open}>
 				<DrawerHeader />
 				{colors.map((color) => (
-					<DraggableColorBox key={color.name} color={color.color} name={color.name}>
+					<DraggableColorBox
+						key={color.name}
+						color={color.color}
+						name={color.name}
+						onRemoveClickHandler={() => removeColor(color.name)}
+					>
 						{color}
 					</DraggableColorBox>
 				))}

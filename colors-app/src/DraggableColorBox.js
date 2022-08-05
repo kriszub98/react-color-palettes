@@ -35,12 +35,12 @@ const BoxContent = styled('div')(() => ({
 	justifyContent: 'space-between'
 }));
 
-const DraggableColorBox = (props) => {
+const DraggableColorBox = ({ color, name, onRemoveClickHandler }) => {
 	return (
-		<Box color={props.color}>
+		<Box color={color}>
 			<BoxContent>
-				<span>{props.name}</span>
-				<DeleteIcon className="deleteIcon" />
+				<span>{name}</span>
+				<DeleteIcon className="deleteIcon" onClick={onRemoveClickHandler} />
 			</BoxContent>
 		</Box>
 	);
