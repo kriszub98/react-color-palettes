@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import './Palette.css';
 
-const SingleColorPalette = () => {
+const SingleColorPalette = ({ findPalette }) => {
 	const { paletteId, colorId } = useParams();
 	const [ format, setFormat ] = useState('hex');
 
@@ -20,12 +19,6 @@ const SingleColorPalette = () => {
 
 		// Return all shades of given color but the white that is generated as first
 		return shades.slice(1);
-	};
-
-	const findPalette = (id) => {
-		return seedColors.find(function(palette) {
-			return palette.id === id;
-		});
 	};
 
 	const changeFormat = (newFormat) => {

@@ -3,22 +3,15 @@ import { useParams } from 'react-router-dom';
 
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
-import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 
 import './Palette.css';
 import PaletteFooter from './PaletteFooter';
 
-const Palette = () => {
+const Palette = ({ findPalette }) => {
 	const [ level, setLevel ] = useState(500);
 	const [ format, setFormat ] = useState('hex');
 	const { id } = useParams();
-
-	const findPalette = (id) => {
-		return seedColors.find(function(palette) {
-			return palette.id === id;
-		});
-	};
 
 	const changeFormat = (newFormat) => {
 		return setFormat(newFormat);

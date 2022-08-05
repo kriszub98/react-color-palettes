@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -62,8 +63,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end'
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm({ savePalette }) {
 	const theme = useTheme();
+	const navigation = useNavigate();
 	const [ open, setOpen ] = React.useState(true);
 	const [ newName, setNewName ] = React.useState('');
 	const [ currentColor, setCurrentColor ] = React.useState('teal');
@@ -95,10 +97,22 @@ export default function NewPaletteForm() {
 		setNewName('');
 	};
 
+	const handleSavePalette = () => {
+		let newName = 'New Test Palette';
+		const newPalette = {
+			paletteName: newName,
+			id: newName.toLocaleLowerCase().replace(/ /g, '-'),
+			colors
+		};
+
+		savePalette(newPalette);
+		return navigation(`/`);
+	};
+
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
-			<AppBar position="fixed" open={open}>
+			<AppBar position="fixed" open={open} color="default">
 				<Toolbar>
 					<IconButton
 						color="inherit"
@@ -112,6 +126,9 @@ export default function NewPaletteForm() {
 					<Typography variant="h6" noWrap component="div">
 						Persistent drawer
 					</Typography>
+					<Button variant="contained" color="primary" onClick={handleSavePalette}>
+						Save Palette
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
