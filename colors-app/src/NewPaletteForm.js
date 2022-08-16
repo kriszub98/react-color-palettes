@@ -15,7 +15,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Button from '@mui/material/Button';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 
 const drawerWidth = 400;
 
@@ -198,16 +198,7 @@ export default function NewPaletteForm({ savePalette, palettes }) {
 			</Drawer>
 			<Main open={open}>
 				<DrawerHeader />
-				{colors.map((color) => (
-					<DraggableColorBox
-						key={color.name}
-						color={color.color}
-						name={color.name}
-						onRemoveClickHandler={() => removeColor(color.name)}
-					>
-						{color}
-					</DraggableColorBox>
-				))}
+				<DraggableColorList colors={colors} setColors={setColors} removeColor={removeColor} />
 			</Main>
 		</Box>
 	);

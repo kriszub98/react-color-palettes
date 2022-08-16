@@ -1,7 +1,26 @@
 This application allows user to get colour palette, copy set colors on box click and then paste them where needed.
 
+Files:
 src/
 App - Main Application file, that calls for Palette class, passing seedColors variables imported from seedColors.js
 Palette - Component that containes all the color boxes. It takes colors argument. Colors should be array of colors that will be shown inside pallete. Each color should contain color and name.
+
 ColorBox - Component, that takes 2 props, name and background and returns a box with set width and height. Background is returned upon element click and also is used to style the color of the div. Name is shown inside span.
+1.  How does it make the copied! effect?
+1.  After clicking on the box, the changeCopyState function is getting called. 
+    That function changes the isCopied value inside state, that conditionaly adds the class show to copy-overlay and copy-msg classes.
+
 seedColors - seed file that contains all colours that will be used inside app
+
+/ **
+ * FileName: colorHelpers.js
+ * Helper file that generates palette with the changed color levels.
+ * Each level is darker or lighter version of set color. 
+ * It generates them with the informations about their name, id, hex, rgb and rgba.
+ ** /
+
+Libraries used:
+CopyToClipboard - Library that copies chosen value, as well as allows to use the callback to do something after copying value
+chroma-js - Library that allows user to edit the color
+rc-slider - Better looking slider for color choosing
+material-ui - premade react components 
