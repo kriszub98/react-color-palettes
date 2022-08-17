@@ -4,7 +4,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CSS } from '@dnd-kit/utilities';
 
-const Box = styled('div')(({ color, transform, transition }) => ({
+const Box = styled('div')(({ color, transform, transition, isDragging }) => ({
 	width: '20%',
 	height: '25%',
 	backgroundColor: color,
@@ -24,7 +24,8 @@ const Box = styled('div')(({ color, transform, transition }) => ({
 	},
 	'&:hover .deleteIcon:hover': {
 		color: 'white'
-	}
+	},
+	zIndex: isDragging ? '999' : 'default'
 }));
 
 const BoxContent = styled('div')(() => ({
@@ -43,10 +44,10 @@ const BoxContent = styled('div')(() => ({
 }));
 
 const DraggableColorBox = ({ id, color, name, onRemoveClickHandler }) => {
-	const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+	const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
 
 	return (
-		<Box color={color} transform={transform} transition={transition} ref={setNodeRef}>
+		<Box color={color} isDragging={isDragging} transform={transform} transition={transition} ref={setNodeRef}>
 			<div style={{ width: '100%', height: '100%' }} {...attributes} {...listeners} />
 			<BoxContent>
 				<span>{name}</span>
