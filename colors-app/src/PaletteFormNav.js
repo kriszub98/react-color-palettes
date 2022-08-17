@@ -19,6 +19,9 @@ const AppBar = styled(MuiAppBar, {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen
 	}),
+	flexDirection: 'row',
+	justifyContent: 'space-between',
+	height: '64px',
 	...(open && {
 		width: `calc(100% - ${drawerWidth}px)`,
 		marginLeft: `${drawerWidth}px`,
@@ -41,7 +44,7 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 	};
 
 	return (
-		<div>
+		<div style={{ display: 'flex' }}>
 			<CssBaseline />
 			<AppBar position="fixed" open={open} color="default">
 				<Toolbar>
@@ -55,8 +58,10 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" noWrap component="div">
-						Persistent drawer
+						Create A Palette
 					</Typography>
+				</Toolbar>
+				<div class={{}}>
 					<ValidatorForm onSubmit={() => handleSavePalette(paletteName)}>
 						<TextValidator
 							label="Palette Name"
@@ -70,13 +75,13 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 						<Button variant="contained" color="primary" type="submit">
 							Save Palette
 						</Button>
-						<Link to="/">
-							<Button variant="contained" color="secondary">
-								Go Back
-							</Button>
-						</Link>
 					</ValidatorForm>
-				</Toolbar>
+					<Link to="/">
+						<Button variant="contained" color="secondary">
+							Go Back
+						</Button>
+					</Link>
+				</div>
 			</AppBar>
 		</div>
 	);
