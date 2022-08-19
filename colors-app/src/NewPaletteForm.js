@@ -42,6 +42,17 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end'
 }));
 
+const DrawerContainer = styled('div')(() => ({
+	width: '90%',
+	height: '100%',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'center',
+	alignItems: 'center'
+}));
+
+const ButtonsContainer = styled('div')(() => ({}));
+
 export default function NewPaletteForm({ savePalette, palettes, maxColors = 20 }) {
 	const theme = useTheme();
 	const navigation = useNavigate();
@@ -118,16 +129,18 @@ export default function NewPaletteForm({ savePalette, palettes, maxColors = 20 }
 					</IconButton>
 				</DrawerHeader>
 				<Divider />
-				<Typography variant="h4">Design Your Palette</Typography>
-				<div>
-					<Button variant="contained" color="secondary" onClick={clearColors}>
-						Clear Palette
-					</Button>
-					<Button variant="contained" color="primary" onClick={addRandomColor} disabled={paletteIsFull}>
-						{paletteIsFull ? 'Palette Is Full' : 'Random Color'}
-					</Button>
-				</div>
-				<ColorPickerForm paletteIsFull={paletteIsFull} addNewColor={addNewColor} colors={colors} />
+				<DrawerContainer>
+					<Typography variant="h4">Design Your Palette</Typography>
+					<ButtonsContainer>
+						<Button variant="contained" color="secondary" onClick={clearColors}>
+							Clear Palette
+						</Button>
+						<Button variant="contained" color="primary" onClick={addRandomColor} disabled={paletteIsFull}>
+							{paletteIsFull ? 'Palette Is Full' : 'Random Color'}
+						</Button>
+					</ButtonsContainer>
+					<ColorPickerForm paletteIsFull={paletteIsFull} addNewColor={addNewColor} colors={colors} />
+				</DrawerContainer>
 			</Drawer>
 			<Main open={open}>
 				<DrawerHeader />
