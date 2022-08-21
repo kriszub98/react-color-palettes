@@ -7,8 +7,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -33,16 +33,6 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette }) => {
-	const [ paletteName, setPaletteName ] = React.useState('');
-
-	ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-		return palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLocaleLowerCase());
-	});
-
-	const handlePaletteNameChange = (evt) => {
-		setPaletteName(evt.target.value);
-	};
-
 	return (
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
@@ -61,21 +51,8 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 						Create A Palette
 					</Typography>
 				</Toolbar>
-				<div class={{}}>
-					<ValidatorForm onSubmit={() => handleSavePalette(paletteName)}>
-						<TextValidator
-							label="Palette Name"
-							name="paletteName"
-							value={paletteName}
-							onChange={handlePaletteNameChange}
-							validators={[ 'required', 'isPaletteNameUnique' ]}
-							errorMessages={[ 'Enter Palette Name', 'Name is already used!' ]}
-						/>
-
-						<Button variant="contained" color="primary" type="submit">
-							Save Palette
-						</Button>
-					</ValidatorForm>
+				<div>
+					<PaletteMetaForm palettes={palettes} handleSavePalette={handleSavePalette} />
 					<Link to="/">
 						<Button variant="contained" color="secondary">
 							Go Back
