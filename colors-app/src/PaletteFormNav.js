@@ -21,6 +21,7 @@ const AppBar = styled(MuiAppBar, {
 	}),
 	flexDirection: 'row',
 	justifyContent: 'space-between',
+	alignItems: 'center',
 	height: '64px',
 	...(open && {
 		width: `calc(100% - ${drawerWidth}px)`,
@@ -32,7 +33,27 @@ const AppBar = styled(MuiAppBar, {
 	})
 }));
 
+const styles = {
+	navButtons: {
+		marginRight: '1rem'
+	},
+	navButton: {
+		margin: '0 0.5rem'
+	},
+	link: { textDecoration: 'none' }
+};
+
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette }) => {
+	const [ isFormShowing, setIsFormShowing ] = React.useState(true);
+
+	const showForm = () => {
+		return setIsFormShowing(true);
+	};
+
+	const hideForm = () => {
+		return setIsFormShowing(false);
+	};
+
 	return (
 		<div style={{ display: 'flex' }}>
 			<CssBaseline />
@@ -51,15 +72,20 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 						Create A Palette
 					</Typography>
 				</Toolbar>
-				<div>
-					<PaletteMetaForm palettes={palettes} handleSavePalette={handleSavePalette} />
-					<Link to="/">
-						<Button variant="contained" color="secondary">
+				<div style={styles.navButtons}>
+					<Link to="/" style={styles.link}>
+						<Button variant="contained" color="secondary" style={styles.navButton}>
 							Go Back
 						</Button>
 					</Link>
+					<Button variant="contained" onClick={showForm} style={styles.navButton}>
+						Save
+					</Button>
 				</div>
 			</AppBar>
+			{isFormShowing && (
+				<PaletteMetaForm palettes={palettes} handleSavePalette={handleSavePalette} hideForm={hideForm} />
+			)}
 		</div>
 	);
 };
