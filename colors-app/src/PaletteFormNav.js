@@ -44,7 +44,7 @@ const styles = {
 };
 
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette }) => {
-	const [ isFormShowing, setIsFormShowing ] = React.useState(true);
+	const [ isFormShowing, setIsFormShowing ] = React.useState(false);
 
 	const showForm = () => {
 		return setIsFormShowing(true);

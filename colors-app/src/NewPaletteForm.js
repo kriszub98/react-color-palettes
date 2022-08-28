@@ -18,7 +18,7 @@ const drawerWidth = 400;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
 	flexGrow: 1,
 	height: 'calc(100vh - 64px)',
-	padding: theme.spacing(3),
+	padding: 0,
 	transition: theme.transitions.create('margin', {
 		easing: theme.transitions.easing.sharp,
 		duration: theme.transitions.duration.leavingScreen
@@ -91,12 +91,9 @@ export default function NewPaletteForm({ savePalette, palettes, maxColors = 20 }
 		return setColors((colors) => colors.filter((color) => color.name !== colorName));
 	};
 
-	const handleSavePalette = (paletteName) => {
-		const newPalette = {
-			paletteName,
-			id: paletteName.toLocaleLowerCase().replace(/ /g, '-'),
-			colors
-		};
+	const handleSavePalette = (newPalette) => {
+		newPalette.id = newPalette.paletteName.toLocaleLowerCase().replace(/ /g, '-');
+		newPalette.colors = colors;
 
 		savePalette(newPalette);
 		return navigation(`/`);
