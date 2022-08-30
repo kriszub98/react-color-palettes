@@ -8,7 +8,22 @@ import NewPaletteForm from './NewPaletteForm';
 import './App.css';
 
 function App() {
-	const [ palettes, setPalettes ] = React.useState(seedColors);
+	const savedPalettes = JSON.parse(window.localStorage.getItem('palettes')) || seedColors;
+	const [ palettes, setPalettes ] = React.useState(savedPalettes);
+	const didMount = React.useRef(false);
+
+	React.useEffect(
+		() => {
+			if (!didMount.current) {
+				didMount.current = true;
+				return;
+			}
+
+			// Sync palette changes to localstorage
+			return window.localStorage.setItem('palettes', JSON.stringify(palettes));
+		},
+		[ palettes ]
+	);
 
 	const savePalette = (newPalette) => {
 		return setPalettes((palettes) => [ ...palettes, newPalette ]);
