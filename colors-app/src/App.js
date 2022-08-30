@@ -35,9 +35,13 @@ function App() {
 		});
 	};
 
+	const deletePalette = (id) => {
+		return setPalettes((palettes) => palettes.filter((palette) => palette.id !== id));
+	};
+
 	return (
 		<Routes>
-			<Route exact path="/" element={<PaletteList palettes={palettes} />} />
+			<Route exact path="/" element={<PaletteList palettes={palettes} deletePalette={deletePalette} />} />
 			<Route
 				exact
 				path="/palette/new"

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import './PaletteList.css';
 
-const PaletteList = ({ palettes }) => {
+const PaletteList = ({ palettes, deletePalette }) => {
 	const navigation = useNavigate();
 
 	const goToPalette = (id) => {
@@ -19,7 +19,12 @@ const PaletteList = ({ palettes }) => {
 				</nav>
 				<div className="PaletteList-palettes">
 					{palettes.map((palette) => (
-						<MiniPalette key={palette.id} handleClick={() => goToPalette(palette.id)} {...palette} />
+						<MiniPalette
+							key={palette.id}
+							deletePalette={() => deletePalette(palette.id)}
+							handleClick={() => goToPalette(palette.id)}
+							{...palette}
+						/>
 					))}
 				</div>
 			</div>
