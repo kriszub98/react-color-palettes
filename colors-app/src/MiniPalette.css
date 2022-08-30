@@ -5,9 +5,6 @@
 	position: relative;
 	/* overflow: hidden; */
 	border: 1px solid black;
-}
-
-.MiniPalette-root:hover {
 	cursor: pointer;
 }
 
@@ -42,4 +39,21 @@
 	margin: 0 auto;
 	position: relative;
 	margin-bottom: -4px;
+}
+
+.MiniPalette-delete {
+}
+
+.MiniPalette-root:hover .MiniPalette-deleteIcon {
+	opacity: 1;
+}
+
+.MiniPalette-deleteIcon {
+	color: white;
+	background-color: #eb3d30;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 10;
+	opacity: 0;
 }
