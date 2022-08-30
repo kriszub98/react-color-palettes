@@ -14,12 +14,8 @@ const MiniPalette = ({ paletteName, emoji, colors, handleClick, deletePalette })
 
 	return (
 		<div className="MiniPalette-root" onClick={handleClick}>
-			<div className="MiniPalette-delete">
-				<DeleteIcon
-					className="MiniPalette-deleteIcon"
-					style={{ transition: 'all 0.3s ease-in-out' }}
-					onClick={handleDeletePaletteClick}
-				/>
+			<div className="MiniPalette-delete" style={{ transition: 'all 0.3s ease-in-out' }}>
+				<DeleteIcon className="MiniPalette-deleteIcon" onClick={handleDeletePaletteClick} />
 			</div>
 
 			<div className="MiniPalette-colors">{miniColorBoxes}</div>
