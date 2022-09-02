@@ -16,6 +16,12 @@
 	align-items: center;
 }
 
+@media (max-width: 768.99px) {
+	.logo {
+		display: none;
+	}
+}
+
 .logo a {
 	text-decoration: none;
 	color: black;
@@ -25,6 +31,12 @@
 	width: 340px;
 	margin: 0 10px;
 	display: inline-block;
+}
+
+@media (max-width: 768.99px) {
+	.slider {
+		width: 150px;
+	}
 }
 
 .rc-slider-track {

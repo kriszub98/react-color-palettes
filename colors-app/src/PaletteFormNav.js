@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import PaletteMetaForm from './PaletteMetaForm';
+import sizes from './sizes';
 
 const drawerWidth = 400;
 
@@ -33,15 +34,26 @@ const AppBar = styled(MuiAppBar, {
 	})
 }));
 
-const styles = {
-	navButtons: {
-		marginRight: '1rem'
+const NavButtonsContainer = styled('div')(() => ({
+	marginRight: '1rem',
+
+	a: {
+		textDecoration: 'none'
 	},
-	navButton: {
+
+	Button: {
 		margin: '0 0.5rem'
 	},
-	link: { textDecoration: 'none' }
-};
+
+	[sizes.down('xs')]: {
+		marginRight: 0,
+
+		Button: {
+			margin: '0.1rem',
+			padding: '0 0.3rem'
+		}
+	}
+}));
 
 const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette }) => {
 	const [ isFormShowing, setIsFormShowing ] = React.useState(false);
@@ -72,16 +84,16 @@ const PaletteFormNav = ({ open, palettes, handleDrawerOpen, handleSavePalette })
 						Create A Palette
 					</Typography>
 				</Toolbar>
-				<div style={styles.navButtons}>
-					<Link to="/" style={styles.link}>
-						<Button variant="contained" color="secondary" style={styles.navButton}>
+				<NavButtonsContainer>
+					<Link to="/">
+						<Button variant="contained" color="secondary">
 							Go Back
 						</Button>
 					</Link>
-					<Button variant="contained" onClick={showForm} style={styles.navButton}>
+					<Button variant="contained" onClick={showForm}>
 						Save
 					</Button>
-				</div>
+				</NavButtonsContainer>
 			</AppBar>
 			{isFormShowing && (
 				<PaletteMetaForm palettes={palettes} handleSavePalette={handleSavePalette} hideForm={hideForm} />

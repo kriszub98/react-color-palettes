@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { useSortable } from '@dnd-kit/sortable';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CSS } from '@dnd-kit/utilities';
+import sizes from './sizes';
 
 const Box = styled('div')(({ color, transform, transition, isDragging }) => ({
 	width: '20%',
@@ -25,7 +26,19 @@ const Box = styled('div')(({ color, transform, transition, isDragging }) => ({
 	'&:hover .deleteIcon:hover': {
 		color: 'white'
 	},
-	zIndex: isDragging ? '999' : 'default'
+	zIndex: isDragging ? '999' : 'default',
+	[sizes.down('lg')]: {
+		width: '25%',
+		height: '20%'
+	},
+	[sizes.down('md')]: {
+		width: '50%',
+		height: '10%'
+	},
+	[sizes.down('sm')]: {
+		width: '100%',
+		height: '5%'
+	}
 }));
 
 const BoxContent = styled('div')(() => ({
