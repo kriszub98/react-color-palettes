@@ -20,7 +20,7 @@
 	}
 
 	.SingleColorPalette .ColorBox {
-		height: 40%;
+		height: 33.3333%;
 	}
 }
 
@@ -43,6 +43,10 @@
 
 	.SingleColorPalette .ColorBox {
 		height: 10%;
+	}
+
+	.copy-msg h1 {
+		font-size: 5rem;
 	}
 }
 
