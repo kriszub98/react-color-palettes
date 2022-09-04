@@ -1,9 +1,13 @@
 .PaletteList-root {
 	background-color: blue;
+	background-color: #0b7;
+	background-image: url("./styles/bg.svg");
+	/* background by SVGBackgrounds.com */
 	height: 100vh;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+	overflow: scroll;
 }
 
 .PaletteList-container {
@@ -32,6 +36,10 @@
 	justify-content: space-between;
 	align-items: center;
 	color: white;
+}
+
+.PaletteList-title {
+	font-size: 2rem;
 }
 
 .PaletteList-nav a {

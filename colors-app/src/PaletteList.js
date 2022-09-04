@@ -14,7 +14,7 @@ const PaletteList = ({ palettes, deletePalette }) => {
 		<div className="PaletteList-root">
 			<div className="PaletteList-container">
 				<nav className="PaletteList-nav">
-					<h1>React Colors</h1>
+					<h1 className="PaletteList-title">React Colors</h1>
 					<Link to="/palette/new">Create New Palette</Link>
 				</nav>
 				<div className="PaletteList-palettes">
