@@ -2,14 +2,14 @@ import React from 'react';
 import './MiniPalette.css';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const MiniPalette = ({ paletteName, emoji, colors, handleClick, deletePalette }) => {
+const MiniPalette = ({ paletteName, emoji, colors, handleClick, openDeleteDialog }) => {
 	const miniColorBoxes = colors.map((color) => (
 		<div key={color.name} className="MiniPalette-miniColor" style={{ backgroundColor: color.color }} />
 	));
 
 	const handleDeletePaletteClick = (evt) => {
 		evt.stopPropagation();
-		deletePalette();
+		openDeleteDialog();
 	};
 
 	return (
