@@ -1,1 +1,0 @@
-https://github.com/kriszub98/react-color-palettes.git
