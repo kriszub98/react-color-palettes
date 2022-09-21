@@ -48,7 +48,7 @@ const PaletteList = ({ palettes, deletePalette }) => {
 				</nav>
 				<TransitionGroup className="PaletteList-palettes">
 					{palettes.map((palette) => (
-						<CSSTransition key={palette.id} classNames="fade" timeout={500}>
+						<CSSTransition key={palette.id} classNames="PaletteListFade" timeout={500}>
 							<MiniPalette
 								openDeleteDialog={() => openDeleteDialog(palette.id)}
 								handleClick={() => goToPalette(palette.id)}

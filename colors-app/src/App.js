@@ -6,6 +6,7 @@ import PaletteList from './PaletteList';
 import seedColors from './seedColors';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
+import Page from './Page';
 import './App.css';
 
 function App() {
@@ -44,23 +45,43 @@ function App() {
 	return (
 		<div className="root">
 			<TransitionGroup>
-				<CSSTransition key={location.pathname} classNames="fade" timeout={400}>
+				<CSSTransition key={location.pathname} classNames="page" timeout={350}>
 					<Routes>
 						<Route
 							exact
 							path="/"
-							element={<PaletteList palettes={palettes} deletePalette={deletePalette} />}
+							element={
+								<Page>
+									<PaletteList palettes={palettes} deletePalette={deletePalette} />
+								</Page>
+							}
 						/>
 						<Route
 							exact
 							path="/palette/new"
-							element={<NewPaletteForm savePalette={savePalette} palettes={palettes} />}
+							element={
+								<Page>
+									<NewPaletteForm savePalette={savePalette} palettes={palettes} />
+								</Page>
+							}
 						/>
-						<Route exact path="/palette/:id" element={<Palette findPalette={findPalette} />} />
+						<Route
+							exact
+							path="/palette/:id"
+							element={
+								<Page>
+									<Palette findPalette={findPalette} />
+								</Page>
+							}
+						/>
 						<Route
 							exact
 							path="/palette/:paletteId/:colorId"
-							element={<SingleColorPalette findPalette={findPalette} />}
+							element={
+								<Page>
+									<SingleColorPalette findPalette={findPalette} />
+								</Page>
+							}
 						/>
 					</Routes>
 				</CSSTransition>
