@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import blue from '@mui/material/colors/blue';
@@ -20,19 +20,22 @@ const PaletteList = ({ palettes, deletePalette }) => {
 	const [ isDeleteDialogOpen, setIsDeleteDialogOpen ] = React.useState(false);
 	const [ idPaletteToDelete, setIdPaletteToDelete ] = React.useState('');
 
-	const openDeleteDialog = (id) => {
+	const openDeleteDialog = useCallback((id) => {
 		setIdPaletteToDelete(id);
 		return setIsDeleteDialogOpen(true);
-	};
+	}, []);
 
 	const closeDeleteDialog = () => {
 		setIdPaletteToDelete('');
 		return setIsDeleteDialogOpen(false);
 	};
 
-	const goToPalette = (id) => {
-		return navigation(`/palette/${id}`);
-	};
+	const goToPalette = useCallback(
+		(id) => {
+			return navigation(`/palette/${id}`);
+		},
+		[ navigation ]
+	);
 
 	const handleDelete = () => {
 		deletePalette(idPaletteToDelete);
@@ -50,8 +53,9 @@ const PaletteList = ({ palettes, deletePalette }) => {
 					{palettes.map((palette) => (
 						<CSSTransition key={palette.id} classNames="PaletteListFade" timeout={500}>
 							<MiniPalette
-								openDeleteDialog={() => openDeleteDialog(palette.id)}
-								handleClick={() => goToPalette(palette.id)}
+								id={palette.id}
+								openDeleteDialog={openDeleteDialog}
+								goToPalette={goToPalette}
 								{...palette}
 							/>
 						</CSSTransition>
